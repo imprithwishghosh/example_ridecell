@@ -6,18 +6,12 @@ on:
      - main
   pull_request:
     types:
-      - closed   
-  branch_protection_rule:
-    - created
-    - edited
-    - deleted
+      - closed      
 jobs:
-   deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
-      
+    - uses: actions/checkout@v1
     - name: Check if PR is merged into main/master branch
       if: >
           contains(github.event.head_commit.message, 'BUILD_CONTAINER_IMAGE') ||
